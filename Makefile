@@ -1,9 +1,11 @@
 all: build
-	./pilones.com.exe
+	./modbusHealthChecker.exe
 
 build:
 	GOARCH=wasm GOOS=js go build -o web/app.wasm
-	go build
+	GOARCH=arm GOOS=linux go build -o modbusHealthChecker
+	go build -o modbusHealthChecker.exe
 clean:
-	rm -f pilones.com.exe
+	rm -f modbusHealthChecker.exe
+	rm -r  modbusHealthChecker
 	rm -f web/app.wasm
